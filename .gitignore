@@ -7,7 +7,6 @@
 # Build outputs
 /dist/
 *.zip
-*.xpi
 *.crx
 
 # Python cache
