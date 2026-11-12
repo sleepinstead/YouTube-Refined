@@ -41,12 +41,6 @@ A lightweight, distraction-free browser extension to declutter YouTube. Customiz
 3. Choose **Load unpacked** and select the provided Chrome extension folder.
 4. Pin **YouTube Refined** from the extensions toolbar.
 
-### Firefox
-
-**Signed release:** Open `about:addons` → gear menu → **Install Add-on From File**, then select the signed Firefox `.xpi`.
-
-**Local development:** Open `about:debugging` → **This Firefox** → **Load Temporary Add-on**, then select `manifest.json` in the provided Firefox folder. The temporary add-on is removed when Firefox closes.
-
 ---
 
 ## Privacy & License
