@@ -235,7 +235,7 @@ p.sub { text-align:center; color:var(--muted); margin:0 0 32px; }
 .board { display:flex; flex-wrap:wrap; gap:28px; justify-content:center; }
 figure { margin:0; }
 figcaption { text-align:center; margin-top:10px; color:var(--muted); font-size:12px; }
-.popup { width:360px; height:620px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--bg); }
+.popup { width:360px; height:690px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--bg); }
 .panels { overflow:hidden; }
 .panel { animation:none; }
 .row, .switch input, .tab, button, input, select { pointer-events:none; }
@@ -292,6 +292,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
             <span class="row-text"><span class="row-title">Hide filter chips</span><span class="row-desc" id="feed-filterChipsNote">Removes the topic filter bar (All, Gaming, Music…) from feeds.</span></span>
             <span class="switch"><input id="feed-hideFilterChips" type="checkbox" role="switch" aria-describedby="feed-filterChipsNote" /><span class="track"></span></span>
           </label>
+          <label class="row" for="feed-hideHoverPreviews">
+            <span class="row-text"><span class="row-title">Hide hover previews</span><span class="row-desc" id="feed-hideHoverPreviewsNote">Stops videos from auto-playing when you hover over a thumbnail.</span></span>
+            <span class="switch"><input id="feed-hideHoverPreviews" type="checkbox" role="switch" aria-describedby="feed-hideHoverPreviewsNote" /><span class="track"></span></span>
+          </label>
           <h2 class="group-label">Filter videos</h2>
           <label class="row" for="feed-hideLiveStreams">
             <span class="row-text"><span class="row-title">Hide live streams</span><span class="row-desc" id="feed-liveStreamsNote">Removes live videos from feeds.</span></span>
@@ -311,6 +315,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
             <span class="row-text"><span class="row-title">Default resolution</span><span class="row-desc" id="feed-qualityNote">Applied when a video starts; falls back to the next best if unavailable.</span></span>
             <select id="feed-videoQuality" class="select" aria-describedby="feed-qualityNote"><option value="auto" selected>Auto</option><option value="highres">Highest</option><option value="hd2160">2160p</option><option value="hd1440">1440p</option><option value="hd1080">1080p</option><option value="hd720">720p</option><option value="large">480p</option><option value="medium">360p</option><option value="small">240p</option><option value="tiny">144p</option></select>
           </label>
+          <label class="row" for="feed-playbackSpeed">
+            <span class="row-text"><span class="row-title">Default speed</span><span class="row-desc" id="feed-speedNote">Playback speed for new videos.</span></span>
+            <select id="feed-playbackSpeed" class="select" aria-describedby="feed-speedNote"><option value="default" selected>Default</option><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="1.75">1.75×</option><option value="2">2×</option></select>
+          </label>
           <label class="row" for="feed-hideComments">
             <span class="row-text"><span class="row-title">Hide comments</span><span class="row-desc" id="feed-commentsNote">Hides the comments area on watch pages.</span></span>
             <span class="switch"><input id="feed-hideComments" type="checkbox" role="switch" aria-describedby="feed-commentsNote" /><span class="track"></span></span>
@@ -322,6 +330,14 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
           <label class="row" for="feed-hideEndScreen">
             <span class="row-text"><span class="row-title">Hide end-screen cards</span><span class="row-desc" id="feed-endScreenNote">Hides video suggestions at playback end.</span></span>
             <span class="switch"><input id="feed-hideEndScreen" type="checkbox" role="switch" aria-describedby="feed-endScreenNote" /><span class="track"></span></span>
+          </label>
+          <label class="row" for="feed-hideAmbientMode">
+            <span class="row-text"><span class="row-title">Hide ambient glow</span><span class="row-desc" id="feed-hideAmbientModeNote">Removes the coloured glow behind the player.</span></span>
+            <span class="switch"><input id="feed-hideAmbientMode" type="checkbox" role="switch" aria-describedby="feed-hideAmbientModeNote" /><span class="track"></span></span>
+          </label>
+          <label class="row" for="feed-hideInfoCards">
+            <span class="row-text"><span class="row-title">Hide in-video overlays</span><span class="row-desc" id="feed-hideInfoCardsNote">Hides info cards, paid promotion labels and channel watermarks on the player.</span></span>
+            <span class="switch"><input id="feed-hideInfoCards" type="checkbox" role="switch" aria-describedby="feed-hideInfoCardsNote" /><span class="track"></span></span>
           </label>
       </div>
       <div class="panel" role="tabpanel" id="feed-panel-navbar" aria-labelledby="feed-tab-navbar" hidden>
@@ -412,6 +428,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
             <span class="row-text"><span class="row-title">Hide filter chips</span><span class="row-desc" id="watch-filterChipsNote">Removes the topic filter bar (All, Gaming, Music…) from feeds.</span></span>
             <span class="switch"><input id="watch-hideFilterChips" type="checkbox" role="switch" aria-describedby="watch-filterChipsNote" /><span class="track"></span></span>
           </label>
+          <label class="row" for="watch-hideHoverPreviews">
+            <span class="row-text"><span class="row-title">Hide hover previews</span><span class="row-desc" id="watch-hideHoverPreviewsNote">Stops videos from auto-playing when you hover over a thumbnail.</span></span>
+            <span class="switch"><input id="watch-hideHoverPreviews" type="checkbox" role="switch" aria-describedby="watch-hideHoverPreviewsNote" /><span class="track"></span></span>
+          </label>
           <h2 class="group-label">Filter videos</h2>
           <label class="row" for="watch-hideLiveStreams">
             <span class="row-text"><span class="row-title">Hide live streams</span><span class="row-desc" id="watch-liveStreamsNote">Removes live videos from feeds.</span></span>
@@ -431,6 +451,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
             <span class="row-text"><span class="row-title">Default resolution</span><span class="row-desc" id="watch-qualityNote">Applied when a video starts; falls back to the next best if unavailable.</span></span>
             <select id="watch-videoQuality" class="select" aria-describedby="watch-qualityNote"><option value="auto" selected>Auto</option><option value="highres">Highest</option><option value="hd2160">2160p</option><option value="hd1440">1440p</option><option value="hd1080">1080p</option><option value="hd720">720p</option><option value="large">480p</option><option value="medium">360p</option><option value="small">240p</option><option value="tiny">144p</option></select>
           </label>
+          <label class="row" for="watch-playbackSpeed">
+            <span class="row-text"><span class="row-title">Default speed</span><span class="row-desc" id="watch-speedNote">Playback speed for new videos.</span></span>
+            <select id="watch-playbackSpeed" class="select" aria-describedby="watch-speedNote"><option value="default" selected>Default</option><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="1.75">1.75×</option><option value="2">2×</option></select>
+          </label>
           <label class="row" for="watch-hideComments">
             <span class="row-text"><span class="row-title">Hide comments</span><span class="row-desc" id="watch-commentsNote">Hides the comments area on watch pages.</span></span>
             <span class="switch"><input id="watch-hideComments" type="checkbox" role="switch" aria-describedby="watch-commentsNote" /><span class="track"></span></span>
@@ -442,6 +466,14 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
           <label class="row" for="watch-hideEndScreen">
             <span class="row-text"><span class="row-title">Hide end-screen cards</span><span class="row-desc" id="watch-endScreenNote">Hides video suggestions at playback end.</span></span>
             <span class="switch"><input id="watch-hideEndScreen" type="checkbox" role="switch" aria-describedby="watch-endScreenNote" /><span class="track"></span></span>
+          </label>
+          <label class="row" for="watch-hideAmbientMode">
+            <span class="row-text"><span class="row-title">Hide ambient glow</span><span class="row-desc" id="watch-hideAmbientModeNote">Removes the coloured glow behind the player.</span></span>
+            <span class="switch"><input id="watch-hideAmbientMode" type="checkbox" role="switch" aria-describedby="watch-hideAmbientModeNote" /><span class="track"></span></span>
+          </label>
+          <label class="row" for="watch-hideInfoCards">
+            <span class="row-text"><span class="row-title">Hide in-video overlays</span><span class="row-desc" id="watch-hideInfoCardsNote">Hides info cards, paid promotion labels and channel watermarks on the player.</span></span>
+            <span class="switch"><input id="watch-hideInfoCards" type="checkbox" role="switch" aria-describedby="watch-hideInfoCardsNote" /><span class="track"></span></span>
           </label>
       </div>
       <div class="panel" role="tabpanel" id="watch-panel-navbar" aria-labelledby="watch-tab-navbar" hidden>
@@ -532,6 +564,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
             <span class="row-text"><span class="row-title">Hide filter chips</span><span class="row-desc" id="navbar-filterChipsNote">Removes the topic filter bar (All, Gaming, Music…) from feeds.</span></span>
             <span class="switch"><input id="navbar-hideFilterChips" type="checkbox" role="switch" aria-describedby="navbar-filterChipsNote" /><span class="track"></span></span>
           </label>
+          <label class="row" for="navbar-hideHoverPreviews">
+            <span class="row-text"><span class="row-title">Hide hover previews</span><span class="row-desc" id="navbar-hideHoverPreviewsNote">Stops videos from auto-playing when you hover over a thumbnail.</span></span>
+            <span class="switch"><input id="navbar-hideHoverPreviews" type="checkbox" role="switch" aria-describedby="navbar-hideHoverPreviewsNote" /><span class="track"></span></span>
+          </label>
           <h2 class="group-label">Filter videos</h2>
           <label class="row" for="navbar-hideLiveStreams">
             <span class="row-text"><span class="row-title">Hide live streams</span><span class="row-desc" id="navbar-liveStreamsNote">Removes live videos from feeds.</span></span>
@@ -551,6 +587,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
             <span class="row-text"><span class="row-title">Default resolution</span><span class="row-desc" id="navbar-qualityNote">Applied when a video starts; falls back to the next best if unavailable.</span></span>
             <select id="navbar-videoQuality" class="select" aria-describedby="navbar-qualityNote"><option value="auto" selected>Auto</option><option value="highres">Highest</option><option value="hd2160">2160p</option><option value="hd1440">1440p</option><option value="hd1080">1080p</option><option value="hd720">720p</option><option value="large">480p</option><option value="medium">360p</option><option value="small">240p</option><option value="tiny">144p</option></select>
           </label>
+          <label class="row" for="navbar-playbackSpeed">
+            <span class="row-text"><span class="row-title">Default speed</span><span class="row-desc" id="navbar-speedNote">Playback speed for new videos.</span></span>
+            <select id="navbar-playbackSpeed" class="select" aria-describedby="navbar-speedNote"><option value="default" selected>Default</option><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="1.75">1.75×</option><option value="2">2×</option></select>
+          </label>
           <label class="row" for="navbar-hideComments">
             <span class="row-text"><span class="row-title">Hide comments</span><span class="row-desc" id="navbar-commentsNote">Hides the comments area on watch pages.</span></span>
             <span class="switch"><input id="navbar-hideComments" type="checkbox" role="switch" aria-describedby="navbar-commentsNote" /><span class="track"></span></span>
@@ -562,6 +602,14 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
           <label class="row" for="navbar-hideEndScreen">
             <span class="row-text"><span class="row-title">Hide end-screen cards</span><span class="row-desc" id="navbar-endScreenNote">Hides video suggestions at playback end.</span></span>
             <span class="switch"><input id="navbar-hideEndScreen" type="checkbox" role="switch" aria-describedby="navbar-endScreenNote" /><span class="track"></span></span>
+          </label>
+          <label class="row" for="navbar-hideAmbientMode">
+            <span class="row-text"><span class="row-title">Hide ambient glow</span><span class="row-desc" id="navbar-hideAmbientModeNote">Removes the coloured glow behind the player.</span></span>
+            <span class="switch"><input id="navbar-hideAmbientMode" type="checkbox" role="switch" aria-describedby="navbar-hideAmbientModeNote" /><span class="track"></span></span>
+          </label>
+          <label class="row" for="navbar-hideInfoCards">
+            <span class="row-text"><span class="row-title">Hide in-video overlays</span><span class="row-desc" id="navbar-hideInfoCardsNote">Hides info cards, paid promotion labels and channel watermarks on the player.</span></span>
+            <span class="switch"><input id="navbar-hideInfoCards" type="checkbox" role="switch" aria-describedby="navbar-hideInfoCardsNote" /><span class="track"></span></span>
           </label>
       </div>
       <div class="panel" role="tabpanel" id="navbar-panel-navbar" aria-labelledby="navbar-tab-navbar">
@@ -652,6 +700,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
             <span class="row-text"><span class="row-title">Hide filter chips</span><span class="row-desc" id="layout-filterChipsNote">Removes the topic filter bar (All, Gaming, Music…) from feeds.</span></span>
             <span class="switch"><input id="layout-hideFilterChips" type="checkbox" role="switch" aria-describedby="layout-filterChipsNote" /><span class="track"></span></span>
           </label>
+          <label class="row" for="layout-hideHoverPreviews">
+            <span class="row-text"><span class="row-title">Hide hover previews</span><span class="row-desc" id="layout-hideHoverPreviewsNote">Stops videos from auto-playing when you hover over a thumbnail.</span></span>
+            <span class="switch"><input id="layout-hideHoverPreviews" type="checkbox" role="switch" aria-describedby="layout-hideHoverPreviewsNote" /><span class="track"></span></span>
+          </label>
           <h2 class="group-label">Filter videos</h2>
           <label class="row" for="layout-hideLiveStreams">
             <span class="row-text"><span class="row-title">Hide live streams</span><span class="row-desc" id="layout-liveStreamsNote">Removes live videos from feeds.</span></span>
@@ -671,6 +723,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
             <span class="row-text"><span class="row-title">Default resolution</span><span class="row-desc" id="layout-qualityNote">Applied when a video starts; falls back to the next best if unavailable.</span></span>
             <select id="layout-videoQuality" class="select" aria-describedby="layout-qualityNote"><option value="auto" selected>Auto</option><option value="highres">Highest</option><option value="hd2160">2160p</option><option value="hd1440">1440p</option><option value="hd1080">1080p</option><option value="hd720">720p</option><option value="large">480p</option><option value="medium">360p</option><option value="small">240p</option><option value="tiny">144p</option></select>
           </label>
+          <label class="row" for="layout-playbackSpeed">
+            <span class="row-text"><span class="row-title">Default speed</span><span class="row-desc" id="layout-speedNote">Playback speed for new videos.</span></span>
+            <select id="layout-playbackSpeed" class="select" aria-describedby="layout-speedNote"><option value="default" selected>Default</option><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="1.75">1.75×</option><option value="2">2×</option></select>
+          </label>
           <label class="row" for="layout-hideComments">
             <span class="row-text"><span class="row-title">Hide comments</span><span class="row-desc" id="layout-commentsNote">Hides the comments area on watch pages.</span></span>
             <span class="switch"><input id="layout-hideComments" type="checkbox" role="switch" aria-describedby="layout-commentsNote" /><span class="track"></span></span>
@@ -682,6 +738,14 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
           <label class="row" for="layout-hideEndScreen">
             <span class="row-text"><span class="row-title">Hide end-screen cards</span><span class="row-desc" id="layout-endScreenNote">Hides video suggestions at playback end.</span></span>
             <span class="switch"><input id="layout-hideEndScreen" type="checkbox" role="switch" aria-describedby="layout-endScreenNote" /><span class="track"></span></span>
+          </label>
+          <label class="row" for="layout-hideAmbientMode">
+            <span class="row-text"><span class="row-title">Hide ambient glow</span><span class="row-desc" id="layout-hideAmbientModeNote">Removes the coloured glow behind the player.</span></span>
+            <span class="switch"><input id="layout-hideAmbientMode" type="checkbox" role="switch" aria-describedby="layout-hideAmbientModeNote" /><span class="track"></span></span>
+          </label>
+          <label class="row" for="layout-hideInfoCards">
+            <span class="row-text"><span class="row-title">Hide in-video overlays</span><span class="row-desc" id="layout-hideInfoCardsNote">Hides info cards, paid promotion labels and channel watermarks on the player.</span></span>
+            <span class="switch"><input id="layout-hideInfoCards" type="checkbox" role="switch" aria-describedby="layout-hideInfoCardsNote" /><span class="track"></span></span>
           </label>
       </div>
       <div class="panel" role="tabpanel" id="layout-panel-navbar" aria-labelledby="layout-tab-navbar" hidden>

@@ -32,6 +32,9 @@ ytd-reel-video-renderer {
 `.trim();
 
   YTC.WATCH_PAGE_STYLES = {
+    hideHoverPreviews: `ytd-video-preview, #video-preview, #mouseover-overlay, ytd-thumbnail-overlay-loading-preview-renderer { display: none !important; }`,
+    hideAmbientMode: `ytd-watch-flexy #cinematics, ytd-watch-flexy #cinematic-container { display: none !important; }`,
+    hideInfoCards: `.ytp-cards-button, .ytp-cards-teaser, .ytp-paid-content-overlay, .ytp-suggested-action, .iv-branding { display: none !important; }`,
     hideComments: `ytd-watch-flexy #comments, ytd-watch-flexy ytd-comments { display: none !important; }`,
     hideRecommendations: `ytd-watch-flexy #secondary { display: none !important; } ytd-watch-flexy #primary { width: 100% !important; max-width: 100% !important; }`,
     hideEndScreen: `.ytp-endscreen-content, .ytp-ce-element { display: none !important; }`,

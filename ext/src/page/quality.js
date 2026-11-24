@@ -1,7 +1,22 @@
-/** Page-world script: applies the preferred quality via the player API (unreachable from isolated world). */
+/** Page-world script: applies the preferred quality and speed via the player API (unreachable from isolated world). */
 (function () {
   const ORDER = ['highres', 'hd2160', 'hd1440', 'hd1080', 'hd720', 'large', 'medium', 'small', 'tiny'];
   let appliedFor = '';
+
+  let speedFor = '';
+  const preferredSpeed = () => document.documentElement?.getAttribute('data-ytc-speed') || 'default';
+
+  function applySpeed(force) {
+    const speed = preferredSpeed();
+    if (speed === 'default') return;
+    const player = document.getElementById('movie_player');
+    if (!player || typeof player.setPlaybackRate !== 'function') return;
+    const videoId = player.getVideoData?.()?.video_id || '';
+    const key = `${videoId}:${speed}`;
+    if (!force && key === speedFor) return;
+    player.setPlaybackRate(Number(speed));
+    speedFor = key;
+  }
 
   const preferred = () => document.documentElement?.getAttribute('data-ytc-quality') || 'auto';
 
@@ -29,14 +44,14 @@
     appliedFor = key;
   }
 
-  const onPlay = (e) => { if (e.target?.localName === 'video') setTimeout(() => apply(false), 0); };
+  const onPlay = (e) => { if (e.target?.localName === 'video') setTimeout(() => { apply(false); applySpeed(false); }, 0); };
 
   document.addEventListener('playing', onPlay, true);
   document.addEventListener('loadedmetadata', onPlay, true);
-  document.addEventListener('yt-navigate-finish', () => { appliedFor = ''; setTimeout(() => apply(false), 500); });
+  document.addEventListener('yt-navigate-finish', () => { appliedFor = ''; speedFor = ''; setTimeout(() => { apply(false); applySpeed(false); }, 500); });
 
-  new MutationObserver(() => apply(true)).observe(document.documentElement, {
+  new MutationObserver(() => { apply(true); applySpeed(true); }).observe(document.documentElement, {
     attributes: true,
-    attributeFilter: ['data-ytc-quality'],
+    attributeFilter: ['data-ytc-quality', 'data-ytc-speed'],
   });
 })();

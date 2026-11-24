@@ -43,6 +43,10 @@
             <span class="row-text"><span class="row-title">Hide filter chips</span><span class="row-desc" id="filterChipsNote">Removes the topic filter bar (All, Gaming, Music…) from feeds.</span></span>
             <span class="switch"><input id="hideFilterChips" type="checkbox" role="switch" aria-describedby="filterChipsNote" /><span class="track"></span></span>
           </label>
+          <label class="row" for="hideHoverPreviews">
+            <span class="row-text"><span class="row-title">Hide hover previews</span><span class="row-desc" id="hideHoverPreviewsNote">Stops videos from auto-playing when you hover over a thumbnail.</span></span>
+            <span class="switch"><input id="hideHoverPreviews" type="checkbox" role="switch" aria-describedby="hideHoverPreviewsNote" /><span class="track"></span></span>
+          </label>
           <h2 class="group-label">Filter videos</h2>
           <label class="row" for="hideLiveStreams">
             <span class="row-text"><span class="row-title">Hide live streams</span><span class="row-desc" id="liveStreamsNote">Removes live videos from feeds.</span></span>
@@ -73,6 +77,18 @@
               <option value="tiny">144p</option>
             </select>
           </label>
+          <label class="row" for="playbackSpeed">
+            <span class="row-text"><span class="row-title">Default speed</span><span class="row-desc" id="speedNote">Playback speed for new videos.</span></span>
+            <select id="playbackSpeed" class="select" aria-describedby="speedNote">
+              <option value="default">Default</option>
+              <option value="0.75">0.75×</option>
+              <option value="1">1×</option>
+              <option value="1.25">1.25×</option>
+              <option value="1.5">1.5×</option>
+              <option value="1.75">1.75×</option>
+              <option value="2">2×</option>
+            </select>
+          </label>
           <label class="row" for="hideComments">
             <span class="row-text"><span class="row-title">Hide comments</span><span class="row-desc" id="commentsNote">Hides the comments area on watch pages.</span></span>
             <span class="switch"><input id="hideComments" type="checkbox" role="switch" aria-describedby="commentsNote" /><span class="track"></span></span>
@@ -84,6 +100,14 @@
           <label class="row" for="hideEndScreen">
             <span class="row-text"><span class="row-title">Hide end-screen cards</span><span class="row-desc" id="endScreenNote">Hides video suggestions at playback end.</span></span>
             <span class="switch"><input id="hideEndScreen" type="checkbox" role="switch" aria-describedby="endScreenNote" /><span class="track"></span></span>
+          </label>
+          <label class="row" for="hideAmbientMode">
+            <span class="row-text"><span class="row-title">Hide ambient glow</span><span class="row-desc" id="hideAmbientModeNote">Removes the coloured glow behind the player.</span></span>
+            <span class="switch"><input id="hideAmbientMode" type="checkbox" role="switch" aria-describedby="hideAmbientModeNote" /><span class="track"></span></span>
+          </label>
+          <label class="row" for="hideInfoCards">
+            <span class="row-text"><span class="row-title">Hide in-video overlays</span><span class="row-desc" id="hideInfoCardsNote">Hides info cards, paid promotion labels and channel watermarks on the player.</span></span>
+            <span class="switch"><input id="hideInfoCards" type="checkbox" role="switch" aria-describedby="hideInfoCardsNote" /><span class="track"></span></span>
           </label>
       </div>
       <div class="panel" role="tabpanel" id="panel-navbar" aria-labelledby="tab-navbar" hidden>

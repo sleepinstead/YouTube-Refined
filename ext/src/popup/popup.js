@@ -5,6 +5,7 @@ const YTC = globalThis.YTC;
 const STORAGE_KEY = 'columns';
 const HINT_KEY = 'gridHint';
 const VIDEO_QUALITY_KEY = 'videoQuality';
+const PLAYBACK_SPEED_KEY = 'playbackSpeed';
 
 const TOGGLE_OPTIONS = [
   { key: 'blockShorts', id: 'blockShorts', initial: YTC.DEFAULT_BLOCK_SHORTS, sanitize: YTC.sanitizeBlockShorts },
@@ -24,6 +25,9 @@ const TOGGLE_OPTIONS = [
   { key: 'hideVoiceSearch', id: 'hideVoiceSearch', initial: YTC.DEFAULT_HIDE_VOICE_SEARCH, sanitize: YTC.sanitizeHideVoiceSearch },
   { key: 'hideNotifications', id: 'hideNotifications', initial: YTC.DEFAULT_HIDE_NOTIFICATIONS, sanitize: YTC.sanitizeHideNotifications },
   { key: 'hideCountryCode', id: 'hideCountryCode', initial: YTC.DEFAULT_HIDE_COUNTRY_CODE, sanitize: YTC.sanitizeHideCountryCode },
+  { key: 'hideHoverPreviews', id: 'hideHoverPreviews', initial: YTC.DEFAULT_HIDE_HOVER_PREVIEWS, sanitize: YTC.sanitizeHideHoverPreviews },
+  { key: 'hideAmbientMode', id: 'hideAmbientMode', initial: YTC.DEFAULT_HIDE_AMBIENT_MODE, sanitize: YTC.sanitizeHideAmbientMode },
+  { key: 'hideInfoCards', id: 'hideInfoCards', initial: YTC.DEFAULT_HIDE_INFO_CARDS, sanitize: YTC.sanitizeHideInfoCards },
   { key: 'gridColumnsEnabled', id: 'gridColumnsEnabled', initial: YTC.DEFAULT_GRID_COLUMNS_ENABLED, sanitize: YTC.sanitizeGridColumnsEnabled },
 ];
 
@@ -36,6 +40,7 @@ const note = document.getElementById('note');
 const gridBody = document.getElementById('gridBody');
 const toggleInputs = new Map(TOGGLE_OPTIONS.map(({ key, id }) => [key, document.getElementById(id)]));
 const shortsNote = document.getElementById('shortsNote');
+const speedSelect = document.getElementById('playbackSpeed');
 const qualitySelect = document.getElementById('videoQuality');
 const statusEl = document.getElementById('status');
 const tabs = [...document.querySelectorAll('.tab')];
@@ -144,9 +149,11 @@ async function init() {
     const stored = await chrome.storage.sync.get({
       [STORAGE_KEY]: YTC.DEFAULT_COLUMNS,
       [VIDEO_QUALITY_KEY]: YTC.DEFAULT_VIDEO_QUALITY,
+      [PLAYBACK_SPEED_KEY]: YTC.DEFAULT_PLAYBACK_SPEED,
       ...defaultsForToggles(),
     });
     qualitySelect.value = YTC.sanitizeVideoQuality(stored[VIDEO_QUALITY_KEY]);
+    speedSelect.value = YTC.sanitizePlaybackSpeed(stored[PLAYBACK_SPEED_KEY]);
     columns = YTC.sanitizeColumns(stored[STORAGE_KEY]);
     toggles = Object.fromEntries(TOGGLE_OPTIONS.map(({ key, sanitize }) => [key, sanitize(stored[key])]));
   } catch {
@@ -202,6 +209,10 @@ for (const { key } of TOGGLE_OPTIONS) {
 
 qualitySelect.addEventListener('change', () => {
   write({ [VIDEO_QUALITY_KEY]: YTC.sanitizeVideoQuality(qualitySelect.value) });
+});
+
+speedSelect.addEventListener('change', () => {
+  write({ [PLAYBACK_SPEED_KEY]: YTC.sanitizePlaybackSpeed(speedSelect.value) });
 });
 
 init();

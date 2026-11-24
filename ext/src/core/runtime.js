@@ -23,6 +23,9 @@
   let hideNotifications = YTC.DEFAULT_HIDE_NOTIFICATIONS;
   let hideCountryCode = YTC.DEFAULT_HIDE_COUNTRY_CODE;
   let showNavbarSettings = YTC.DEFAULT_SHOW_NAVBAR_SETTINGS;
+  let hideHoverPreviews = YTC.DEFAULT_HIDE_HOVER_PREVIEWS;
+  let hideAmbientMode = YTC.DEFAULT_HIDE_AMBIENT_MODE;
+  let hideInfoCards = YTC.DEFAULT_HIDE_INFO_CARDS;
   let gridColumnsEnabled = YTC.DEFAULT_GRID_COLUMNS_ENABLED;
   let onColumnsApplied = null;
   let lastWidth = -1;
@@ -66,6 +69,9 @@
       ['ytc-hide-end-screen', hideEndScreen, YTC.WATCH_PAGE_STYLES.hideEndScreen],
       ['ytc-hide-filter-chips', hideFilterChips, YTC.WATCH_PAGE_STYLES.hideFilterChips],
       ['ytc-hide-sidebar', hideSidebar, YTC.WATCH_PAGE_STYLES.hideSidebar],
+      ['ytc-hideHoverPreviews', hideHoverPreviews, YTC.WATCH_PAGE_STYLES.hideHoverPreviews],
+      ['ytc-hideAmbientMode', hideAmbientMode, YTC.WATCH_PAGE_STYLES.hideAmbientMode],
+      ['ytc-hideInfoCards', hideInfoCards, YTC.WATCH_PAGE_STYLES.hideInfoCards],
       ['ytc-hide-voice-search', hideVoiceSearch, YTC.NAVBAR_STYLES.hideVoiceSearch],
       ['ytc-hide-create-button', hideCreateButton, YTC.NAVBAR_STYLES.hideCreateButton],
       ['ytc-hide-notifications', hideNotifications, YTC.NAVBAR_STYLES.hideNotifications],
@@ -514,6 +520,31 @@
     showNavbarSettings = YTC.sanitizeShowNavbarSettings(enabled);
     syncNavbarSettingsButton();
     return showNavbarSettings;
+  };
+
+  YTC.setHideHoverPreviews = function setHideHoverPreviews(enabled) {
+    hideHoverPreviews = YTC.sanitizeHideHoverPreviews(enabled);
+    syncWatchPageStyles();
+    return hideHoverPreviews;
+  };
+
+  YTC.setHideAmbientMode = function setHideAmbientMode(enabled) {
+    hideAmbientMode = YTC.sanitizeHideAmbientMode(enabled);
+    syncWatchPageStyles();
+    return hideAmbientMode;
+  };
+
+  YTC.setHideInfoCards = function setHideInfoCards(enabled) {
+    hideInfoCards = YTC.sanitizeHideInfoCards(enabled);
+    syncWatchPageStyles();
+    return hideInfoCards;
+  };
+
+  YTC.setPlaybackSpeed = function setPlaybackSpeed(value) {
+    const speed = YTC.sanitizePlaybackSpeed(value);
+    const root = document.documentElement;
+    if (root) root.setAttribute('data-ytc-speed', speed);
+    return speed;
   };
 
   /** Hands the preferred quality to the page-world script (quality.js) via a root attribute. */

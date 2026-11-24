@@ -14,6 +14,7 @@ YouTube is full of things that pull your attention away. Shorts, extra shelves, 
 - Set the video grid to anywhere from 1 to 10 columns.
 - Hide "Explore more topics", membership promos, Mixes and the filter chips at the top.
 - Filter out live streams, playlists or videos you have already watched.
+- Stop thumbnails from auto-playing when you hover over them.
 
 **Shorts**
 - Remove Shorts shelves, chips and cards.
@@ -27,6 +28,8 @@ YouTube is full of things that pull your attention away. Shorts, extra shelves, 
 **Watch page**
 - Hide comments, the recommendation sidebar or end-screen cards.
 - Set a default video resolution (Auto, Highest, or 2160p down to 144p).
+- Set a default playback speed (0.75× to 2×).
+- Hide the ambient glow behind the player, and in-video overlays such as info cards, paid promotion labels and watermarks.
 
 Changes apply to every open YouTube tab straight away. Styles load early, so you don't see the page flicker.
 
@@ -40,7 +43,7 @@ There are no libraries and no build step.
 
 ## Installation
 
-1. Download `youtube-refined-1.1.0.zip` from the [Releases](../../releases) page and unzip it.
+1. Download `youtube-refined-1.2.0.zip` from the [Releases](../../releases) page and unzip it.
 2. Open `chrome://extensions` in Chrome.
 3. Turn on **Developer mode** in the top right.
 4. Click **Load unpacked** and pick the unzipped folder (the one with `manifest.json`).

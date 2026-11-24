@@ -60,6 +60,19 @@
   YTC.DEFAULT_SHOW_NAVBAR_SETTINGS = false;
   YTC.sanitizeShowNavbarSettings = (value) => value === true;
 
+  YTC.DEFAULT_HIDE_HOVER_PREVIEWS = false;
+  YTC.sanitizeHideHoverPreviews = (value) => value === true;
+
+  YTC.DEFAULT_HIDE_AMBIENT_MODE = false;
+  YTC.sanitizeHideAmbientMode = (value) => value === true;
+
+  YTC.DEFAULT_HIDE_INFO_CARDS = false;
+  YTC.sanitizeHideInfoCards = (value) => value === true;
+
+  YTC.PLAYBACK_SPEEDS = ['default', '0.75', '1', '1.25', '1.5', '1.75', '2'];
+  YTC.DEFAULT_PLAYBACK_SPEED = 'default';
+  YTC.sanitizePlaybackSpeed = (value) => (YTC.PLAYBACK_SPEEDS.includes(String(value)) ? String(value) : YTC.DEFAULT_PLAYBACK_SPEED);
+
   /** YouTube player quality ids, highest first. 'auto' leaves YouTube in charge. */
   YTC.VIDEO_QUALITIES = ['auto', 'highres', 'hd2160', 'hd1440', 'hd1080', 'hd720', 'large', 'medium', 'small', 'tiny'];
   YTC.DEFAULT_VIDEO_QUALITY = 'auto';

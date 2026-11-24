@@ -21,6 +21,10 @@
   const HIDE_COUNTRY_CODE_KEY = 'hideCountryCode';
   const SHOW_NAVBAR_SETTINGS_KEY = 'showNavbarSettings';
   const GRID_COLUMNS_ENABLED_KEY = 'gridColumnsEnabled';
+  const HIDE_HOVER_PREVIEWS_KEY = 'hideHoverPreviews';
+  const HIDE_AMBIENT_MODE_KEY = 'hideAmbientMode';
+  const HIDE_INFO_CARDS_KEY = 'hideInfoCards';
+  const PLAYBACK_SPEED_KEY = 'playbackSpeed';
   const VIDEO_QUALITY_KEY = 'videoQuality';
   const HINT_KEY = 'gridHint';
 
@@ -57,6 +61,10 @@
       [SHOW_NAVBAR_SETTINGS_KEY]: YTC.DEFAULT_SHOW_NAVBAR_SETTINGS,
       [GRID_COLUMNS_ENABLED_KEY]: YTC.DEFAULT_GRID_COLUMNS_ENABLED,
       [VIDEO_QUALITY_KEY]: YTC.DEFAULT_VIDEO_QUALITY,
+      [HIDE_HOVER_PREVIEWS_KEY]: YTC.DEFAULT_HIDE_HOVER_PREVIEWS,
+      [HIDE_AMBIENT_MODE_KEY]: YTC.DEFAULT_HIDE_AMBIENT_MODE,
+      [HIDE_INFO_CARDS_KEY]: YTC.DEFAULT_HIDE_INFO_CARDS,
+      [PLAYBACK_SPEED_KEY]: YTC.DEFAULT_PLAYBACK_SPEED,
     })
     .then((stored) => {
       YTC.setColumns(stored[STORAGE_KEY]);
@@ -79,6 +87,10 @@
       YTC.setHideCountryCode(stored[HIDE_COUNTRY_CODE_KEY]);
       YTC.setShowNavbarSettings(stored[SHOW_NAVBAR_SETTINGS_KEY]);
       YTC.setVideoQuality(stored[VIDEO_QUALITY_KEY]);
+      YTC.setHideHoverPreviews(stored[HIDE_HOVER_PREVIEWS_KEY]);
+      YTC.setHideAmbientMode(stored[HIDE_AMBIENT_MODE_KEY]);
+      YTC.setHideInfoCards(stored[HIDE_INFO_CARDS_KEY]);
+      YTC.setPlaybackSpeed(stored[PLAYBACK_SPEED_KEY]);
     })
     .catch(() => {
       YTC.setColumns(YTC.DEFAULT_COLUMNS);
@@ -101,6 +113,10 @@
       YTC.setHideCountryCode(YTC.DEFAULT_HIDE_COUNTRY_CODE);
       YTC.setShowNavbarSettings(YTC.DEFAULT_SHOW_NAVBAR_SETTINGS);
       YTC.setVideoQuality(YTC.DEFAULT_VIDEO_QUALITY);
+      YTC.setHideHoverPreviews(YTC.DEFAULT_HIDE_HOVER_PREVIEWS);
+      YTC.setHideAmbientMode(YTC.DEFAULT_HIDE_AMBIENT_MODE);
+      YTC.setHideInfoCards(YTC.DEFAULT_HIDE_INFO_CARDS);
+      YTC.setPlaybackSpeed(YTC.DEFAULT_PLAYBACK_SPEED);
     });
 
   chrome.storage.onChanged.addListener((changes, area) => {
@@ -124,6 +140,10 @@
     if (HIDE_NOTIFICATIONS_KEY in changes) YTC.setHideNotifications(changes[HIDE_NOTIFICATIONS_KEY].newValue);
     if (HIDE_COUNTRY_CODE_KEY in changes) YTC.setHideCountryCode(changes[HIDE_COUNTRY_CODE_KEY].newValue);
     if (SHOW_NAVBAR_SETTINGS_KEY in changes) YTC.setShowNavbarSettings(changes[SHOW_NAVBAR_SETTINGS_KEY].newValue);
+    if (HIDE_HOVER_PREVIEWS_KEY in changes) YTC.setHideHoverPreviews(changes[HIDE_HOVER_PREVIEWS_KEY].newValue);
+    if (HIDE_AMBIENT_MODE_KEY in changes) YTC.setHideAmbientMode(changes[HIDE_AMBIENT_MODE_KEY].newValue);
+    if (HIDE_INFO_CARDS_KEY in changes) YTC.setHideInfoCards(changes[HIDE_INFO_CARDS_KEY].newValue);
+    if (PLAYBACK_SPEED_KEY in changes) YTC.setPlaybackSpeed(changes[PLAYBACK_SPEED_KEY].newValue);
     if (VIDEO_QUALITY_KEY in changes) YTC.setVideoQuality(changes[VIDEO_QUALITY_KEY].newValue);
   });
 })();
