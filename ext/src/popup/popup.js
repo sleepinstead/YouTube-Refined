@@ -4,6 +4,7 @@ const YTC = globalThis.YTC;
 
 const STORAGE_KEY = 'columns';
 const HINT_KEY = 'gridHint';
+const VIDEO_QUALITY_KEY = 'videoQuality';
 
 const TOGGLE_OPTIONS = [
   { key: 'blockShorts', id: 'blockShorts', initial: YTC.DEFAULT_BLOCK_SHORTS, sanitize: YTC.sanitizeBlockShorts },
@@ -35,6 +36,37 @@ const note = document.getElementById('note');
 const gridBody = document.getElementById('gridBody');
 const toggleInputs = new Map(TOGGLE_OPTIONS.map(({ key, id }) => [key, document.getElementById(id)]));
 const shortsNote = document.getElementById('shortsNote');
+const qualitySelect = document.getElementById('videoQuality');
+const statusEl = document.getElementById('status');
+const tabs = [...document.querySelectorAll('.tab')];
+
+/* Tabs */
+function selectTab(tab, focus) {
+  for (const t of tabs) {
+    const on = t === tab;
+    t.setAttribute('aria-selected', String(on));
+    t.tabIndex = on ? 0 : -1;
+    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+  }
+  if (focus) tab.focus();
+}
+tabs.forEach((tab, i) => {
+  tab.addEventListener('click', () => selectTab(tab));
+  tab.addEventListener('keydown', (e) => {
+    const step = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+    if (step) { e.preventDefault(); selectTab(tabs[(i + step + tabs.length) % tabs.length], true); }
+    if (e.key === 'Home') { e.preventDefault(); selectTab(tabs[0], true); }
+    if (e.key === 'End') { e.preventDefault(); selectTab(tabs[tabs.length - 1], true); }
+  });
+});
+
+let statusTimer = 0;
+function setStatus(state, text) {
+  statusEl.textContent = text;
+  statusEl.dataset.state = state;
+  clearTimeout(statusTimer);
+  if (state === 'saved') statusTimer = setTimeout(() => { statusEl.dataset.state = 'idle'; }, 1400);
+}
 
 const SHORTS_ON_HINT = 'Removes Shorts from feeds; Shorts links go home.';
 const SHORTS_OFF_HINT = 'Shorts are left alone — reload a YouTube tab to see them again.';
@@ -49,7 +81,7 @@ function queueWrite(items) {
   writeTimer = setTimeout(() => {
     const pending = writeItems;
     writeItems = {};
-    chrome.storage.sync.set(pending).catch(() => {});
+    chrome.storage.sync.set(pending).then(() => setStatus('saved', 'Saved')).catch(() => setStatus('error', 'Not saved'));
   }, WRITE_DELAY);
 }
 
@@ -109,7 +141,12 @@ async function init() {
   let hint = '';
 
   try {
-    const stored = await chrome.storage.sync.get({ [STORAGE_KEY]: YTC.DEFAULT_COLUMNS, ...defaultsForToggles() });
+    const stored = await chrome.storage.sync.get({
+      [STORAGE_KEY]: YTC.DEFAULT_COLUMNS,
+      [VIDEO_QUALITY_KEY]: YTC.DEFAULT_VIDEO_QUALITY,
+      ...defaultsForToggles(),
+    });
+    qualitySelect.value = YTC.sanitizeVideoQuality(stored[VIDEO_QUALITY_KEY]);
     columns = YTC.sanitizeColumns(stored[STORAGE_KEY]);
     toggles = Object.fromEntries(TOGGLE_OPTIONS.map(({ key, sanitize }) => [key, sanitize(stored[key])]));
   } catch {
@@ -162,5 +199,9 @@ for (const { key } of TOGGLE_OPTIONS) {
     write({ [key]: value });
   });
 }
+
+qualitySelect.addEventListener('change', () => {
+  write({ [VIDEO_QUALITY_KEY]: YTC.sanitizeVideoQuality(qualitySelect.value) });
+});
 
 init();

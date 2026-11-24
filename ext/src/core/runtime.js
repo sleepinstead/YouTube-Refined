@@ -516,6 +516,14 @@
     return showNavbarSettings;
   };
 
+  /** Hands the preferred quality to the page-world script (quality.js) via a root attribute. */
+  YTC.setVideoQuality = function setVideoQuality(value) {
+    const quality = YTC.sanitizeVideoQuality(value);
+    const root = document.documentElement;
+    if (root) root.setAttribute('data-ytc-quality', quality);
+    return quality;
+  };
+
   YTC.setGridColumnsEnabled = function setGridColumnsEnabled(enabled) {
     gridColumnsEnabled = YTC.sanitizeGridColumnsEnabled(enabled);
     if (gridColumnsEnabled) {

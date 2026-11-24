@@ -26,6 +26,7 @@ YouTube is full of things that pull your attention away. Shorts, extra shelves, 
 
 **Watch page**
 - Hide comments, the recommendation sidebar or end-screen cards.
+- Set a default video resolution (Auto, Highest, or 2160p down to 144p).
 
 Changes apply to every open YouTube tab straight away. Styles load early, so you don't see the page flicker.
 
@@ -39,13 +40,13 @@ There are no libraries and no build step.
 
 ## Installation
 
-1. Download `youtube-refined-1.0.0.zip` from the [Releases](../../releases) page and unzip it.
+1. Download `youtube-refined-1.1.0.zip` from the [Releases](../../releases) page and unzip it.
 2. Open `chrome://extensions` in Chrome.
 3. Turn on **Developer mode** in the top right.
 4. Click **Load unpacked** and pick the unzipped folder (the one with `manifest.json`).
 5. Pin **YouTube Refined** from the puzzle-piece menu.
 
-You need Chrome 109 or newer.
+You need Chrome 111 or newer.
 
 To run it from the source instead, clone this repo and load the `ext` folder in step 4.
 

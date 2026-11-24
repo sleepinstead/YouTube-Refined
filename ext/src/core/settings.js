@@ -60,6 +60,11 @@
   YTC.DEFAULT_SHOW_NAVBAR_SETTINGS = false;
   YTC.sanitizeShowNavbarSettings = (value) => value === true;
 
+  /** YouTube player quality ids, highest first. 'auto' leaves YouTube in charge. */
+  YTC.VIDEO_QUALITIES = ['auto', 'highres', 'hd2160', 'hd1440', 'hd1080', 'hd720', 'large', 'medium', 'small', 'tiny'];
+  YTC.DEFAULT_VIDEO_QUALITY = 'auto';
+  YTC.sanitizeVideoQuality = (value) => (YTC.VIDEO_QUALITIES.includes(value) ? value : YTC.DEFAULT_VIDEO_QUALITY);
+
   /** Below this card width thumbnails stop being recognisable, so we clamp. */
   YTC.MIN_CARD_WIDTH = 150;
 

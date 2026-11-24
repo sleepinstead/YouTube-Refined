@@ -21,6 +21,7 @@
   const HIDE_COUNTRY_CODE_KEY = 'hideCountryCode';
   const SHOW_NAVBAR_SETTINGS_KEY = 'showNavbarSettings';
   const GRID_COLUMNS_ENABLED_KEY = 'gridColumnsEnabled';
+  const VIDEO_QUALITY_KEY = 'videoQuality';
   const HINT_KEY = 'gridHint';
 
   let lastHint = '';
@@ -55,6 +56,7 @@
       [HIDE_COUNTRY_CODE_KEY]: YTC.DEFAULT_HIDE_COUNTRY_CODE,
       [SHOW_NAVBAR_SETTINGS_KEY]: YTC.DEFAULT_SHOW_NAVBAR_SETTINGS,
       [GRID_COLUMNS_ENABLED_KEY]: YTC.DEFAULT_GRID_COLUMNS_ENABLED,
+      [VIDEO_QUALITY_KEY]: YTC.DEFAULT_VIDEO_QUALITY,
     })
     .then((stored) => {
       YTC.setColumns(stored[STORAGE_KEY]);
@@ -76,6 +78,7 @@
       YTC.setHideNotifications(stored[HIDE_NOTIFICATIONS_KEY]);
       YTC.setHideCountryCode(stored[HIDE_COUNTRY_CODE_KEY]);
       YTC.setShowNavbarSettings(stored[SHOW_NAVBAR_SETTINGS_KEY]);
+      YTC.setVideoQuality(stored[VIDEO_QUALITY_KEY]);
     })
     .catch(() => {
       YTC.setColumns(YTC.DEFAULT_COLUMNS);
@@ -97,6 +100,7 @@
       YTC.setHideNotifications(YTC.DEFAULT_HIDE_NOTIFICATIONS);
       YTC.setHideCountryCode(YTC.DEFAULT_HIDE_COUNTRY_CODE);
       YTC.setShowNavbarSettings(YTC.DEFAULT_SHOW_NAVBAR_SETTINGS);
+      YTC.setVideoQuality(YTC.DEFAULT_VIDEO_QUALITY);
     });
 
   chrome.storage.onChanged.addListener((changes, area) => {
@@ -120,5 +124,6 @@
     if (HIDE_NOTIFICATIONS_KEY in changes) YTC.setHideNotifications(changes[HIDE_NOTIFICATIONS_KEY].newValue);
     if (HIDE_COUNTRY_CODE_KEY in changes) YTC.setHideCountryCode(changes[HIDE_COUNTRY_CODE_KEY].newValue);
     if (SHOW_NAVBAR_SETTINGS_KEY in changes) YTC.setShowNavbarSettings(changes[SHOW_NAVBAR_SETTINGS_KEY].newValue);
+    if (VIDEO_QUALITY_KEY in changes) YTC.setVideoQuality(changes[VIDEO_QUALITY_KEY].newValue);
   });
 })();

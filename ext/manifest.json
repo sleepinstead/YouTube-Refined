@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "YouTube Refined",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Refine your YouTube feed and watch page.",
-  "minimum_chrome_version": "109",
+  "minimum_chrome_version": "111",
   "permissions": [
     "storage",
     "declarativeNetRequestWithHostAccess"
@@ -41,6 +41,17 @@
         "src/core/runtime.js",
         "src/content.js"
       ],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "src/page/quality.js"
+      ],
+      "world": "MAIN",
       "run_at": "document_start",
       "all_frames": false
     }
