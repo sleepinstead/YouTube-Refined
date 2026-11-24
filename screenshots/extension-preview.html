@@ -201,6 +201,26 @@ button { cursor: pointer; }
 .btn:active:not(:disabled) { transform: scale(0.98); }
 .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .btn[hidden] { display: none; }
+.select {
+  flex: none;
+  height: 28px;
+  padding: 0 28px 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5l3 3 3-3' fill='none' stroke='%236b6b6b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 9px center;
+  background-size: 12px;
+  color: var(--text);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+.select:hover { background-color: var(--hover); }
+.select:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
 /* Notice */
 .note { margin: 0 0 8px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--ink); font-size: 12px; }
@@ -218,7 +238,7 @@ figcaption { text-align:center; margin-top:10px; color:var(--muted); font-size:1
 .popup { width:360px; height:620px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--bg); }
 .panels { overflow:hidden; }
 .panel { animation:none; }
-.row, .switch input, .tab, button, input { pointer-events:none; }
+.row, .switch input, .tab, button, input, select { pointer-events:none; }
 
 :root[data-theme="light"]{--bg:#fff;--card:#f6f6f6;--hover:#efefef;--line:#e8e8e8;--text:#111;--muted:#6b6b6b;--ink:#111;--on-ink:#fff;--track:#d4d4d4;color-scheme:light}
 :root[data-theme="dark"]{--bg:#111;--card:#1b1b1b;--hover:#242424;--line:#2a2a2a;--text:#f4f4f4;--muted:#9a9a9a;--ink:#f4f4f4;--on-ink:#111;--track:#3a3a3a;color-scheme:dark}
@@ -287,6 +307,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
           </label>
       </div>
       <div class="panel" role="tabpanel" id="feed-panel-watch" aria-labelledby="feed-tab-watch" hidden>
+          <label class="row" for="feed-videoQuality">
+            <span class="row-text"><span class="row-title">Default resolution</span><span class="row-desc" id="feed-qualityNote">Applied when a video starts; falls back to the next best if unavailable.</span></span>
+            <select id="feed-videoQuality" class="select" aria-describedby="feed-qualityNote"><option value="auto" selected>Auto</option><option value="highres">Highest</option><option value="hd2160">2160p</option><option value="hd1440">1440p</option><option value="hd1080">1080p</option><option value="hd720">720p</option><option value="large">480p</option><option value="medium">360p</option><option value="small">240p</option><option value="tiny">144p</option></select>
+          </label>
           <label class="row" for="feed-hideComments">
             <span class="row-text"><span class="row-title">Hide comments</span><span class="row-desc" id="feed-commentsNote">Hides the comments area on watch pages.</span></span>
             <span class="switch"><input id="feed-hideComments" type="checkbox" role="switch" aria-describedby="feed-commentsNote" /><span class="track"></span></span>
@@ -403,6 +427,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
           </label>
       </div>
       <div class="panel" role="tabpanel" id="watch-panel-watch" aria-labelledby="watch-tab-watch">
+          <label class="row" for="watch-videoQuality">
+            <span class="row-text"><span class="row-title">Default resolution</span><span class="row-desc" id="watch-qualityNote">Applied when a video starts; falls back to the next best if unavailable.</span></span>
+            <select id="watch-videoQuality" class="select" aria-describedby="watch-qualityNote"><option value="auto" selected>Auto</option><option value="highres">Highest</option><option value="hd2160">2160p</option><option value="hd1440">1440p</option><option value="hd1080">1080p</option><option value="hd720">720p</option><option value="large">480p</option><option value="medium">360p</option><option value="small">240p</option><option value="tiny">144p</option></select>
+          </label>
           <label class="row" for="watch-hideComments">
             <span class="row-text"><span class="row-title">Hide comments</span><span class="row-desc" id="watch-commentsNote">Hides the comments area on watch pages.</span></span>
             <span class="switch"><input id="watch-hideComments" type="checkbox" role="switch" aria-describedby="watch-commentsNote" /><span class="track"></span></span>
@@ -519,6 +547,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
           </label>
       </div>
       <div class="panel" role="tabpanel" id="navbar-panel-watch" aria-labelledby="navbar-tab-watch" hidden>
+          <label class="row" for="navbar-videoQuality">
+            <span class="row-text"><span class="row-title">Default resolution</span><span class="row-desc" id="navbar-qualityNote">Applied when a video starts; falls back to the next best if unavailable.</span></span>
+            <select id="navbar-videoQuality" class="select" aria-describedby="navbar-qualityNote"><option value="auto" selected>Auto</option><option value="highres">Highest</option><option value="hd2160">2160p</option><option value="hd1440">1440p</option><option value="hd1080">1080p</option><option value="hd720">720p</option><option value="large">480p</option><option value="medium">360p</option><option value="small">240p</option><option value="tiny">144p</option></select>
+          </label>
           <label class="row" for="navbar-hideComments">
             <span class="row-text"><span class="row-title">Hide comments</span><span class="row-desc" id="navbar-commentsNote">Hides the comments area on watch pages.</span></span>
             <span class="switch"><input id="navbar-hideComments" type="checkbox" role="switch" aria-describedby="navbar-commentsNote" /><span class="track"></span></span>
@@ -635,6 +667,10 @@ body.bgcheck{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/16px
           </label>
       </div>
       <div class="panel" role="tabpanel" id="layout-panel-watch" aria-labelledby="layout-tab-watch" hidden>
+          <label class="row" for="layout-videoQuality">
+            <span class="row-text"><span class="row-title">Default resolution</span><span class="row-desc" id="layout-qualityNote">Applied when a video starts; falls back to the next best if unavailable.</span></span>
+            <select id="layout-videoQuality" class="select" aria-describedby="layout-qualityNote"><option value="auto" selected>Auto</option><option value="highres">Highest</option><option value="hd2160">2160p</option><option value="hd1440">1440p</option><option value="hd1080">1080p</option><option value="hd720">720p</option><option value="large">480p</option><option value="medium">360p</option><option value="small">240p</option><option value="tiny">144p</option></select>
+          </label>
           <label class="row" for="layout-hideComments">
             <span class="row-text"><span class="row-title">Hide comments</span><span class="row-desc" id="layout-commentsNote">Hides the comments area on watch pages.</span></span>
             <span class="switch"><input id="layout-hideComments" type="checkbox" role="switch" aria-describedby="layout-commentsNote" /><span class="track"></span></span>
