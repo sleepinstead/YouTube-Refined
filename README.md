@@ -2,7 +2,7 @@
 
 A small Chrome extension that cleans up YouTube. You choose what to show and what to hide. It works right away, with no page reloads and no tracking.
 
-![YouTube Refined popup](screenshots/preview.png)
+![YouTube Refined popup](visual/preview.png)
 
 ## Why I made it
 
