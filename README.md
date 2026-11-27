@@ -1,85 +1,38 @@
 # YouTube Refined
 
-A small Chrome extension that cleans up YouTube. You choose what to show and what to hide. It works right away, with no page reloads and no tracking.
+YouTube Refined is a Chrome extension that lets you choose what you see on YouTube. If you like reading the comments on a video but rarely watch Shorts, you can keep the comments and hide Shorts. You can also change how many thumbnails fit in a row and pick the speed and quality you prefer for playback.
 
-![YouTube Refined popup](visual/dark.webp)
+## Getting started
 
-## Why I made it
+You'll need Chrome 111 or newer.
 
-YouTube is full of things that pull your attention away. Shorts, extra shelves, promo cards, a crowded home feed. This extension lets you turn those off and set up the site the way you like it.
+1. Download the extension ZIP from the [Releases page](../../releases) and unzip it into a folder you plan to keep.
+2. Open `chrome://extensions` in Chrome and turn on **Developer mode** in the top right.
+3. Click **Load unpacked** and select the folder that contains `manifest.json`. If you downloaded or cloned the source code, select the `ext` folder.
+4. Click the puzzle-piece icon in Chrome's toolbar and pin **YouTube Refined** so it's easy to reach while you're watching.
 
-## Features
+Open YouTube and click the YouTube Refined icon in your toolbar. The popup has four tabs. Try opening **Layout** and moving the column slider while your home feed is visible. Changes apply across your open YouTube tabs without a refresh. Chrome saves your choices for the next time you visit.
 
-**Home feed**
-- Set the video grid to anywhere from 1 to 10 columns.
-- Hide "Explore more topics", membership promos, Mixes and the filter chips at the top.
-- Filter out live streams, playlists or videos you have already watched.
-- Stop thumbnails from auto-playing when you hover over them.
+> **Screenshot placeholder 1** — The extension popup with the Layout tab open.
 
-**Shorts**
-- Remove Shorts shelves, chips and cards.
-- Shorts links are sent back to the home page.
+## What you can change
 
-**Navigation bar**
-- Hide the Create button, Voice Search, the notification bell or the country code.
-- Add a quick Settings shortcut next to your profile.
-- Hide the thin mini-sidebar. The menu button still works.
+### Feed
 
-**Watch page**
-- Hide comments, the recommendation sidebar or end-screen cards.
-- Set a default video resolution (Auto, Highest, or 2160p down to 144p).
-- Set a default playback speed (0.75× to 2×).
-- Hide the ambient glow behind the player, and in-video overlays such as info cards, paid promotion labels and watermarks.
+Shorts are blocked by default. This removes Shorts from your feed and takes you to the home page if you open a Shorts link. Turn off **Block Shorts** to bring them back. You can also hide Mixes, membership offers, topic suggestions, or the row of filter buttons above the feed. To skip videos you've already started, hide videos with playback progress. Live streams and playlists have separate switches. If moving the pointer over a thumbnail starts a preview, you can switch those previews off here.
 
-Changes apply to every open YouTube tab straight away. Styles load early, so you don't see the page flicker.
+### Watch
 
-## Built with
+Choose a playback speed from 0.75× to 2× and a preferred video quality. Leave quality on **Auto** to let YouTube decide, or choose **Highest** for the best quality available on each video. You can hide comments, suggested videos beside the player, or cards that appear at the end. There are also switches for the glow behind the player and overlays such as info cards and channel watermarks.
 
-- Plain JavaScript, HTML and CSS
-- Chrome Manifest V3
-- Chrome storage API, to save your settings and sync them across tabs
+### Navbar
 
-There are no libraries and no build step.
+Hide buttons you seldom use, such as Create, voice search, or the notification bell. If you often open YouTube's settings, add a gear button beside your profile picture.
 
-## Installation
+### Layout
 
-1. Download `youtube-refined-1.2.0.zip` from the [Releases](../../releases) page and unzip it.
-2. Open `chrome://extensions` in Chrome.
-3. Turn on **Developer mode** in the top right.
-4. Click **Load unpacked** and pick the unzipped folder (the one with `manifest.json`).
-5. Pin **YouTube Refined** from the puzzle-piece menu.
+The home feed starts at four columns. Choose from one to ten, depending on your screen width. Fewer columns give each thumbnail more room. You can also hide the narrow sidebar and still open the full menu when you need it.
 
-You need Chrome 111 or newer.
+> **Screenshot placeholder 2** — The YouTube home feed with four columns and Shorts hidden.
 
-To run it from the source instead, clone this repo and load the `ext` folder in step 4.
-
-## How to use it
-
-1. Open YouTube.
-2. Click the YouTube Refined icon in your toolbar.
-3. Switch options on or off and move the column slider.
-
-Your changes show up on the page as you make them.
-
-![Settings in use](visual/light.webp)
-
-## Project structure
-
-```
-ext/
-├── manifest.json
-├── icons/
-└── src/
-    ├── background.js    # extension background worker
-    ├── content.js       # runs on YouTube pages
-    ├── core/            # one file per feature (grid, shorts, filters...)
-    └── popup/           # the settings popup
-```
-
-## Privacy
-
-Everything stays on your computer. The extension makes no network calls and collects no data. It only asks for access to `youtube.com` and for storage, to remember your settings.
-
-## License
-
-Released under the [MIT License](LICENSE).
+YouTube Refined doesn't track what you watch or collect personal data. It's released under the [MIT License](LICENSE).
