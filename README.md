@@ -13,7 +13,7 @@ You'll need Chrome 111 or newer.
 
 Open YouTube and click the YouTube Refined icon in your toolbar. The popup has four tabs. Try opening **Layout** and moving the column slider while your home feed is visible. Changes apply across your open YouTube tabs without a refresh. Chrome saves your choices for the next time you visit.
 
-> **Screenshot placeholder 1** — The extension popup with the Layout tab open.
+![YouTube Refined settings in dark mode](visual/dark.webp)
 
 ## What you can change
 
@@ -33,6 +33,6 @@ Hide buttons you seldom use, such as Create, voice search, or the notification b
 
 The home feed starts at four columns. Choose from one to ten, depending on your screen width. Fewer columns give each thumbnail more room. You can also hide the narrow sidebar and still open the full menu when you need it.
 
-> **Screenshot placeholder 2** — The YouTube home feed with four columns and Shorts hidden.
+![YouTube Refined settings in light mode](visual/light.webp)
 
 YouTube Refined doesn't track what you watch or collect personal data. It's released under the [MIT License](LICENSE).
